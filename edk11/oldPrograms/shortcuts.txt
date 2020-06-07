@@ -1,0 +1,15 @@
+keyboard short cuts for emacs:
+	 C= control
+	 M= alt
+
+Following three lines are for copying/pasting
+
+1)Select a region of text: C-@
+2)Copy/yank text: M-w
+3)Paste text: C-y
+f
+4)Undo: C-/
+5)Redo: C-g
+
+
+To move up one directory level, use cd (space) ..

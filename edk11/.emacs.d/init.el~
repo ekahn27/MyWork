@@ -1,0 +1,18 @@
+;;line numbers
+(global-linum-mode t)
+
+;;remove delay when highlighting parenthesis
+(setq show-paren-delay 0)
+
+;;bracket highlighting
+(show-paren-mode 1)
+
+;;Change tab key behavior to insert spaces instead
+(setq-default indent-tabs-mode nil)
+
+;;Set the number os spaces that tab key inserts to 4
+(setq c-basic-offset 4)
+
+;;smooth scrolling, one line at a time (no jumping)
+(setq scroll-step 1
+      scroll-conservatively 10000)

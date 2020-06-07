@@ -1,0 +1,6 @@
+C++ is .cpp file (c plus plus)
+Compile:
+	g++ hello.cpp -o a.out (or whatever to finish)
+Execute:
+	./a.out
+	(or whatever was before)
