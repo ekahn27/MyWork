@@ -28,17 +28,18 @@ set title       "show filename in window title bar
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set autoindent      "indent if already indented
+filetype indent on
+"set autoindent      "indent if already indented
+"set smartindent     "smart indenting, ex: for loop
 set tabstop=4       "num visual spaces per tab
-set smartindent     "smart indenting, ex: for loop
 set smarttab
 set softtabstop=4   "num spaces in tab when editing
 set shiftwidth=4    "make tab 4 spaces
 set noexpandtab
-set cindent     "special indent for c code
 "set expandtab       "use spaces when tab hit
 "configure tabs for various files
 au BufRead,BufNewFile *.py set expandtab
+au BufRead,BufNewFile *.c, *.h set cindent
 
 set ruler       "always show cursor
 set scrolloff=5     "start scrolling before hitting top/bottom

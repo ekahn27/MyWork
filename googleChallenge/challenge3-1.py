@@ -14,7 +14,7 @@ def sum_numbers(numbers, n, partial=[]):
     for i in range(len(numbers)):
         addToPartial= numbers[i]
         remaining= numbers[i+1:]
-        ans += sum_numbers(remaining, n, partial+[n])
+        ans += sum_numbers(remaining, n, partial+[addToPartial])
 
     return ans
 
@@ -25,5 +25,5 @@ def solution(n):
 
 
 print(solution(3))
-print(solution(4))
-print(solution(5))
+#print(solution(4))
+#print(solution(5))
