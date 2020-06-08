@@ -41,26 +41,26 @@ def solution(n):
 
 #Test Cases
 #Test Case 1
-answer= solution(200)
-if(answer == 487067745): print("Test case 1 passed!")
-else: print('Test case 0 failed: ' + str(answer) + ' instead of 48706774')
+#answer= solution(200)
+#if(answer == 487067745): print("Test case 1 passed!")
+#else: print('Test case 0 failed: ' + str(answer) + ' instead of 48706774')
 
 ##Test Case 2
-#answer= solution(3)
-#if(answer == 1): print('Test case 2 passed!')
-#else: print('Test case 2 failed: ' + str(answer) + ' instead of 1')
-#
-##Test Case 3
-#answer= solution(5)
-#if(answer == 2): print('Test case 3 passed!')
-#else: print('Test case 3 failed: ' + str(answer) + ' instead of 2')
-#
-##Test Case 4
-#answer= solution(6)
-#if(answer == 3): print('Test case 4 passed!')
-#else: print('Test case 4 failed: ' + str(answer) + ' instead of 6')
-#
-##Test Case 5
-#answer= solution(10)
-#if(answer == 9): print('Test case 5 passed!')
-#else: print('Test case 5 failed: ' + str(answer) + ' instead of 9')
+answer= solution(3)
+if(answer == 1): print('Test case 2 passed!')
+else: print('Test case 2 failed: ' + str(answer) + ' instead of 1')
+
+#Test Case 3
+answer= solution(5)
+if(answer == 2): print('Test case 3 passed!')
+else: print('Test case 3 failed: ' + str(answer) + ' instead of 2')
+
+#Test Case 4
+answer= solution(6)
+if(answer == 3): print('Test case 4 passed!')
+else: print('Test case 4 failed: ' + str(answer) + ' instead of 6')
+
+#Test Case 5
+answer= solution(10)
+if(answer == 9): print('Test case 5 passed!')
+else: print('Test case 5 failed: ' + str(answer) + ' instead of 9')
