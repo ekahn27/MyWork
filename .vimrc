@@ -6,7 +6,7 @@ imap ( ()<esc>i
 imap [ []<esc>i
 imap { {}<esc>i
 "move over one space (move outside parens)
-imap <C-l> <esc>la
+imap <C-j> <esc>la
 syntax on	"enables syntax highlighting
 "Shows current line cursor is on
 :set cursorline
@@ -54,6 +54,6 @@ set noswapfile
 set colorcolumn=80  "highlight column 80 for long lines
 
 colorscheme gruvbox
-set background=dark
+"set background=dark
 "set term=screen-256color
 set t_ut=
