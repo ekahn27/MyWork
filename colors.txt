@@ -1,8 +1,0 @@
-  1418 gruvbox.vim
-*   453 hybrid.vim
-*   733 jellybeans.vim
-*   227 minimalist.vim
-  2453 solarized8_high.vim
-*   380 spacecamp_lite.vim
-*    96 wombat256mod.vim
-  6083 total

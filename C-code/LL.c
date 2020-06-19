@@ -9,7 +9,19 @@ typedef struct Node{
 
 }node_t;
 
+node_t* initNode(){
+/*
+Initialize a new Node and return a pointer to it.
+Node is initialized with malloc.
+   */
+	node_t *LL= malloc(sizeof(node_t));
+	return LL;
+}
+
 node_t* lastElement(node_t *node){
+/*
+Return a pointer to the last node in the linked list
+   */
 	node_t *temp;
 	for(temp= node; temp->next != NULL; temp= temp->next){}
 	return temp;
@@ -51,16 +63,29 @@ newNode= node to insert
 	nodeAfter->prev= newNode;
 }
 
-void removeNode(node_t *list , node_t *nodeRemove){
+void removeNode(node_t **list , node_t *nodeRemove){
+	//if removing first node, pointer to LL must be shifted to next node
+	if(nodeRemove == *list){
+		*list= (*list)->next;
+		(*list)->prev= NULL;
+		free(nodeRemove);
+		return;
+	}
+	(nodeRemove->prev)->next= nodeRemove->next;
+	if(nodeRemove->next != NULL){
+		(nodeRemove->next)->prev= nodeRemove->prev;
+	}
+	free(nodeRemove);
 }
 
-void freeAll(node_t *list){
+void freeList(node_t *list){
 /*
 Given a pointer to a linked list, free all nodes in the list
    */
 	node_t *temp;
 	for(temp= list; temp != NULL; list= temp){
 		temp= list->next;
+		printf("freeing: %f\n", list->val);
 		free(list);
 	}
 }
@@ -77,16 +102,26 @@ void printAll(node_t *list){
 int main(){
     node_t *LL= malloc(sizeof(node_t));
     LL->val= 1.0;
+
 	node_t *node2= malloc(sizeof(node_t));
 	node2->val=2.0;
-	//appendLL(LL, node2);
-	insertBetween(&LL, NULL, node2);
-	//printf("First node value: %f\n", LL->val);
-	//printf("Node 2 value: %f\n", (LL->next)->val);
-	//printf("Node 1 value: %f\n", (node2->val));
+	appendLL(LL, node2);
+
+	node_t *node3= malloc(sizeof(node_t));
+	node3->val= 3.0;
+	insertBetween(&LL, NULL, node3);
+
+	node_t *node4= malloc(sizeof(node_t));
+	node4->val= 4.0;
+	insertBetween(&LL, LL->next, node4);
+	
+	removeNode(&LL, LL);
+
+	//should be 3->1->4->2
+	//after removing, 1->4->2
 	printAll(LL);
     
-	freeAll(LL);
+	freeList(LL);
     return 0;
 }
 

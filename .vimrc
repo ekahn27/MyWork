@@ -1,10 +1,23 @@
 "Easy escape to normal mode
 imap jj <esc>
 
-imap /* /*<ENTER><ENTER>*/<esc>ki
-imap ( ()<esc>i
-imap [ []<esc>i
-imap { {}<esc>i
+function! Ap(isOn)
+	if(a:isOn == 1)
+		imap ( ()<esc>i
+		imap [ []<esc>i
+		imap { {<CR><BS>}<esc>ko
+	elseif(a:isOn == 0)
+		imap ( (
+		imap [ [
+		imap { {
+	endif
+endfunction
+imap <C-k> <esc>:call Ap(1)<CR>i
+imap <C-l> <esc>:call Ap(0)<CR>i
+
+"better multiline comment
+imap /* <esc>:set backspace=indent,start<CR>i/<space>*<esc>hxa<CR><CR><BS>*/<esc>:set backspace=indent,eol,start<CR>ki
+
 "move over one space (move outside parens)
 imap <C-j> <esc>la
 syntax on	"enables syntax highlighting
@@ -38,11 +51,11 @@ set tabstop=4       "num visual spaces per tab
 set smarttab
 set softtabstop=4   "num spaces in tab when editing
 set shiftwidth=4    "make tab 4 spaces
-set noexpandtab
+set noexpandtab		"don't use spaces for tabs
 "set expandtab       "use spaces when tab hit
 "configure tabs for various files
-au BufRead,BufNewFile *.py set expandtab
-au BufRead,BufNewFile *.c set cindent
+au BufReadPost,BufNewFile *.py setlocal expandtab
+au BufReadPost,BufNewFile *.c,*.h setlocal cindent
 
 set ruler       "always show cursor
 set scrolloff=5     "start scrolling before hitting top/bottom
@@ -55,5 +68,8 @@ set colorcolumn=80  "highlight column 80 for long lines
 
 colorscheme gruvbox
 "set background=dark
-"set term=screen-256color
+"set term=xterm-256color
 set t_ut=
+
+"stuff I"m trying out
+set completeopt=longest,menuone "autocomplete
