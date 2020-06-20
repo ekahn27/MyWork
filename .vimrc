@@ -1,28 +1,30 @@
 "Easy escape to normal mode
 imap jj <esc>
 
+let mapleader="'"
+
 function! Ap(isOn)
 	if(a:isOn == 1)
-		imap ( ()<esc>i
-		imap [ []<esc>i
-		imap { {<CR><BS>}<esc>ko
+		inoremap ( ()<esc>i
+		inoremap [ []<esc>i
+		inoremap { {<CR>}<esc>O
 	elseif(a:isOn == 0)
-		imap ( (
-		imap [ [
-		imap { {
+		inoremap ( (
+		inoremap [ [
+		inoremap { {
 	endif
 endfunction
-imap <C-k> <esc>:call Ap(1)<CR>i
-imap <C-l> <esc>:call Ap(0)<CR>i
-
+imap <leader>f <esc>:call Ap(1)<CR>i
+imap <leader>d <esc>:call Ap(0)<CR>i
+call Ap(1)
 "better multiline comment
-imap /* <esc>:set backspace=indent,start<CR>i/<space>*<esc>hxa<CR><CR><BS>*/<esc>:set backspace=indent,eol,start<CR>ki
+inoremap /* <esc>:set backspace=indent,start<CR>i/*<CR><BS>*/<esc>:set backspace=indent,eol,start<CR>O<BS>
 
 "move over one space (move outside parens)
-imap <C-j> <esc>la
+imap <leader>a <esc>la
 syntax on	"enables syntax highlighting
 "Shows current line cursor is on
-:set cursorline
+set cursorline
 nnoremap j gj
 nnoremap k gk
 set wildmenu
@@ -43,6 +45,8 @@ set showmode        "show mode currently editing in
 set title       "show filename in window title bar
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+"Can use w/ gq to wrap text really nicely
+set textwidth=80
 
 filetype indent on
 "set autoindent      "indent if already indented

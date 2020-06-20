@@ -1,4 +1,4 @@
-//Doubly linked list
+//Doubly linked list of floats
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -64,6 +64,9 @@ newNode= node to insert
 }
 
 void removeNode(node_t **list , node_t *nodeRemove){
+/*
+Remove node <nodeRemove> from linked list <list>. The node is then freed.
+*/
 	//if removing first node, pointer to LL must be shifted to next node
 	if(nodeRemove == *list){
 		*list= (*list)->next;
@@ -91,6 +94,9 @@ Given a pointer to a linked list, free all nodes in the list
 }
 
 void printAll(node_t *list){
+/*
+Print all the values of nodes in a given linked list for testing purposes.
+*/
 	node_t *temp;
 	int index= 0;
 	for(temp= list; temp != NULL; temp= temp->next){
@@ -100,28 +106,31 @@ void printAll(node_t *list){
 }
 
 int main(){
+	//1
     node_t *LL= malloc(sizeof(node_t));
     LL->val= 1.0;
 
+	//1->2
 	node_t *node2= malloc(sizeof(node_t));
 	node2->val=2.0;
 	appendLL(LL, node2);
 
+	//3->1->2
 	node_t *node3= malloc(sizeof(node_t));
 	node3->val= 3.0;
 	insertBetween(&LL, NULL, node3);
 
+	//3->1->4->2
 	node_t *node4= malloc(sizeof(node_t));
 	node4->val= 4.0;
 	insertBetween(&LL, LL->next, node4);
 	
+	//after removing, 1->4->2
 	removeNode(&LL, LL);
 
-	//should be 3->1->4->2
-	//after removing, 1->4->2
 	printAll(LL);
-    
 	freeList(LL);
+
     return 0;
 }
 

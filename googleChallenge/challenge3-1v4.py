@@ -1,3 +1,7 @@
+#Google challenge: Level 3
+#The Grandest Staircase of them All
+#Correct answer but takes too long for large numbers
+
 from math import ceil
 
 #init arr[n-1][n]
