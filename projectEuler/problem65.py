@@ -30,15 +30,17 @@ Hence the sequence of the first ten convergents for 2–√ are:
 from fractions import Fraction
 from math import floor
 
-def sumDigits(num):
+def sumStringDigits(num):
     """
     Sum the digits of an imput number.
-    Using it to find the sum of the numerator.
+    Using it to find the sum of the numerator. Since the numerator is such a big
+    number, the sum only comes out correct by converting the int to a string.
+    This way, my argument type is string and I can iterate over each index of
+    the string.
     """
     sum= 0
-    while(num >= 1):
-        sum += num % 10
-        num= int(floor(num / 10))
+    for digit in num:
+        sum += int(digit)
     return sum
 
 
@@ -57,18 +59,8 @@ def problem65():
         currVal= Fraction(1, (arr[index] + currVal))
     currVal += 2
 
-    print(currVal.numerator)
-    s= str(currVal.numerator)
-    one= s[0:10]
-    two= s[10:20]
-    three= s[20:30]
-    four= s[30:40]
-    five= s[40:50]
-    six= s[50:]
-
-    ans= sumDigits(int(one)) + sumDigits(int(two)) + sumDigits(int(three)) + sumDigits(int(four)) + sumDigits(int(five)) + sumDigits(int(six))
-
+    ans= sumStringDigits(str(currVal.numerator))
     return ans
 
 ans= problem65()
-print("My ans: " + str(ans))
+print("My answer: " + str(ans))
