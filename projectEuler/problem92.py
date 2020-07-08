@@ -1,4 +1,6 @@
 """
+SOLVED
+
 A number chain is created by continuously adding the square of the digits in a
 number to form a new number until it has been seen before.
 
@@ -21,7 +23,7 @@ def getDigits(num):
     ex: getDigits(123), returns [1,2,3]
     """
     list= []
-    while(num >= 10):
+    while(num >= 1):
         newVal= int(num % 10)
         list.append(newVal)
         num= int((num - newVal)/10)
@@ -31,7 +33,7 @@ def lastValOfChain(n):
     """
     returns the last value (1 or 89) in the number chain specified above
     """
-    while(n != 1 or n != 89):
+    while(n != 1 and n != 89):
         digits= getDigits(n)
         n= 0
         for digit in digits:
