@@ -1,4 +1,6 @@
 #!/bin/bash
+#TODO -i flag for interactive mode
+#only compile w/ -i and in main
 lineStart="csh>>>"
 cFile="tempcsh.c"
 execFile="tempcsh"
