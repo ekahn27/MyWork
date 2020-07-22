@@ -1,10 +1,21 @@
 #!/bin/bash
-#TODO -i flag for interactive mode
-#only compile w/ -i and in main
 lineStart="csh>>>"
 cFile="tempcsh.c"
 execFile="tempcsh"
 currLine=3
+isInteractive=0
+inMain=1
+
+#handle command line flags
+for opt in $@; do
+	case $opt in
+		-i|--interactive)
+			isInteractive=1
+			;;
+		*)
+			;;
+	esac
+done
 
 echo "#include<stdio.h>
 int main(){
@@ -16,7 +27,7 @@ do
 
 	if [[ $command == "exit" ]]; then #exit interactive mode
 		break
-	elif [[ $command == "" ]]; then #handle nothing entered
+	elif [[ -z $command ]]; then #handle nothing entered
 		continue
 	elif [[ $command == "undo" ]]; then #undo
 		((currLine--))
@@ -26,8 +37,10 @@ do
 		./$execFile
 	elif [[ $command == "func" ]]; then #start function and move cursor to top
 		currLine=2
+		inMain=0
 	elif [[ $command == "endfunc" ]]; then #end function and move cursor to main
 		currLine=$(wc -l < $cFile)
+		inMain=1
 	elif [[ $command == "print" ]]; then #print current c-file and current line
 		echo "Current Line: $currLine"
 		cat $cFile
@@ -36,6 +49,10 @@ do
 	else #append to c-file at currLine
 		sed -i "${currLine}i\\$command\\" $cFile
 		((currLine++))
+		if [[ $inMain == 1 && $isInteractive == 1 ]]; then #only compile if in interactive mode
+			gcc $cFile -o $execFile
+			./$execFile
+		fi
 	fi
 done
 #cleanup
