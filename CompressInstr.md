@@ -1,6 +1,6 @@
-## Instructions to Compress-Archive/Decompress-Unarchive with Tar
+# Instructions to Compress-Archive/Decompress-Unarchive with Tar
 
-### Compress and Archive <br>
+## Compress and Archive <br>
 **_tar -czvf name-of-arhive.tar.gz /path/to/directory-or-file_**
 
 - -c: **C**reate archive
@@ -16,7 +16,7 @@ _tar -czvf archive.tar.gz stuff_
 _tar -cjvf_ can be used instead (j instead of z) to use bzip2 (slower but more compression)
 
 
-### Decompress and Exctract <br>
+## Decompress and Exctract <br>
 **_tar -xzvf name-of-archive.tar.gz -C /directory/to/extract/to_**
 
 - -x: E**x**tract archive
