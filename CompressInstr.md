@@ -1,7 +1,7 @@
 ## Instructions to Compress-Archive/Decompress-Unarchive with Tar
 
 ### Compress and Archive <br>
-*tar -czvf name-of-arhive.tar.gz /path/to/directory-or-file*
+**_tar -czvf name-of-arhive.tar.gz /path/to/directory-or-file_**
 
 - -c: **C**reate archive
 - -z: Compress archive w/ g**z**ip
@@ -11,12 +11,16 @@
 Say you have a directory named "stuff" in the current directory and you want to
 save it to a file named archive.tar.gz. You'd run ...
 
-*tar -czvf archive.tar.gz stuff*
+_tar -czvf archive.tar.gz stuff_
 
-*tar -cjvf* can be used instead (j instead of z) to use bzip2 (slower but more compression)
+_tar -cjvf_ can be used instead (j instead of z) to use bzip2 (slower but more compression)
+
 
 ### Decompress and Exctract <br>
-*tar -xzvf name-of-archive.tar.gz -C /directory/to/extract/to*
+**_tar -xzvf name-of-archive.tar.gz -C /directory/to/extract/to_**
 
 - -x: E**x**tract archive
-- -j: replace -z w/ -j if bzip2 compression
+- -j: replace -z with -j if bzip2 compression
+
+
+For for info go [here](https://www.howtogeek.com/248780/how-to-compress-and-extract-files-using-the-tar-command-on-linux/)
