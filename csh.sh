@@ -21,6 +21,20 @@ echo "#include<stdio.h>
 int main(){
 return 0;}" > $cFile
 
+function undo(){
+	((currLine--))
+	sed -i "${currLine}d" $cFile
+}
+
+function run(){
+	gcc $cFile -o $execFile
+	compilationReturn=$?
+	./$execFile
+	if [[ ( $1 == "-u" ) && ( compilationReturn -ne 0 || $? -ne 0 ) ]]; then
+		undo
+	fi
+}
+
 while :
 do
 	read -r -p $lineStart command
@@ -30,11 +44,9 @@ do
 	elif [[ -z $command ]]; then #handle nothing entered
 		continue
 	elif [[ $command == "undo" ]]; then #undo
-		((currLine--))
-		sed -i "${currLine}d" $cFile
+		undo
 	elif [[ $command == "run" ]]; then #compile and execute c-file
-		gcc $cFile -o $execFile
-		./$execFile
+		run
 	elif [[ $command == "func" ]]; then #start function and move cursor to top
 		currLine=2
 		inMain=0
@@ -50,8 +62,7 @@ do
 		sed -i "${currLine}i\\$command\\" $cFile
 		((currLine++))
 		if [[ $inMain == 1 && $isInteractive == 1 ]]; then #only compile if in interactive mode
-			gcc $cFile -o $execFile
-			./$execFile
+			run -u
 		fi
 	fi
 done
