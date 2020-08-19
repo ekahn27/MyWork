@@ -38,7 +38,7 @@ void appendLL(node_t *list, node_t *newNode){
 	lastElem->next= newNode;
 }
 
-void insertBetween(node_t **list, node_t *nodeBefore, node_t *newNode){
+void insertAfter(node_t **list, node_t *nodeBefore, node_t *newNode){
 /*
 Append a new node anywhere in the linked list, after <nodeBefore>
 If <nodeBefore> is NULL, append to list of the list.
@@ -118,12 +118,12 @@ int main(){
 	//3->1->2
 	node_t *node3= malloc(sizeof(node_t));
 	node3->val= 3.0;
-	insertBetween(&LL, NULL, node3);
+	insertAfter(&LL, NULL, node3);
 
 	//3->1->4->2
 	node_t *node4= malloc(sizeof(node_t));
 	node4->val= 4.0;
-	insertBetween(&LL, LL->next, node4);
+	insertAfter(&LL, LL->next, node4);
 	
 	//after removing, 1->4->2
 	removeNode(&LL, LL);
