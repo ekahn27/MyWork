@@ -25,13 +25,13 @@ class Node:
         nodeAdd.edges.append(edge)
         return
     
-    def remove(self, nodeRemove):
+    def remove(self):
         """
-        Remove a node from our graph
+        Remove a node from the graph
         """
-        assert isinstance(nodeRemove, Node)
+        assert isinstance(self, Node)
 
-        for edge in nodeRemove.edges:
+        for edge in self.edges:
             neighbor= getNeighbor(edge)
             neighbor.edges.remove(edge)
         self.edges=[]
@@ -49,19 +49,20 @@ class Edge:
 
     def getOppNode(self, node):
         assert isinstance(node, Node)
-        if(node == node1):
-            return node2
-        return node1
+        if(node == self.node1):
+            return self.node2
+        return self.node1
 
 #Set up graph
-node1= Node(name="Colin")
-node2= Node(name="Eric")
-node3= Node(name="Sara")
-node4= Node(name="Amiet") 
+node1= Node(name="One")
+node2= Node(name="Two")
+node3= Node(name="Three")
+node4= Node(name="Four") 
 
-node1.add(node2, 2, "edgey")
-node1.add(node3, 3, "edgey2")
-node3.add(node4, 2, "link")
+node1.add(node2, 3, "edgey")
+node1.add(node3, 4, "edgey2")
+node3.add(node4, 1, "link")
+node2.add(node4, 3, "link2")
 
 #    print("Node1: " + node1.name)
 #    for edge in node1.edges:

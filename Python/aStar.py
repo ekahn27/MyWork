@@ -1,5 +1,5 @@
-from graph import *
-#dijkstras implementation
+from graph2 import *
+#A* implementation
 
 #list Frontier: All nodes in Frontier set where shortest known length from
 #start to the node is node value
@@ -10,16 +10,16 @@ from graph import *
 #end: end node
 
 def dijkstras():
-    startNode.dist= 0
+    startNode.f= 0
     Frontier= [startNode]
     Settled= []
     bkptr={startNode:None}
     
     while(len(Frontier) != 0):
-        #find node in Frontier list with shortest distance
+        #find node in Frontier list with least f= g + h
         currNode= Frontier[0]
         for node in Frontier:
-            if(node.dist < currNode.dist):
+            if(node.f < currNode.f):
                 currNode= node
         
         Frontier.remove(currNode)
@@ -40,13 +40,13 @@ def dijkstras():
             neighbor= currNode.getNeighbor(edge)
             
             if((neighbor not in Frontier) and (neighbor not in Settled)):
-                neighbor.dist= currNode.dist + edge.weight
+                neighbor.f= currNode.f + edge.weight
                 Frontier.append(neighbor)
                 #bkptr
                 bkptr[neighbor]= currNode
         
-            elif(currNode.dist + edge.weight < neighbor.dist):
-                neighbor.dist= currNode.dist + edge.weight
+            elif(currNode.f + edge.weight < neighbor.f):
+                neighbor.f= currNode.f + edge.weight
                 #bkptr
                 bkptr[neighbor]= currNode
 
