@@ -2,8 +2,10 @@
 Undirected Graph for A* algorithm
 """
 class Node:
-    def __init__(self, f= None, edges= None, name= ""):
+    def __init__(self, f= None, g= None, h= None, edges= None, name= ""):
         self.f= f
+        self.g= g
+        self.h= h
         if (edges is None):
             self.edges= []
         else:
@@ -32,9 +34,13 @@ class Node:
         assert isinstance(self, Node)
 
         for edge in self.edges:
-            neighbor= getNeighbor(edge)
+            neighbor= self.getNeighbor(edge)
             neighbor.edges.remove(edge)
-        self.edges=[]
+            
+            edge.node1 == None
+            edge.node2 == None
+
+        self.edges= []
         return
 
     def isNeighbor(self, node):
@@ -69,20 +75,10 @@ class Edge:
             return self.node2
         return self.node1
 
+
 #Set up graph
-"""
-0,0  0,1  0,2  0,3  0,4
-
-1,0  1,1  1,2  1,3  1,4
-
-2,0  2,1  2,2  2,3  2,4
-
-3,0  3,1  3,2  3,3  3,4
-
-4,0  4,1  4,2  4,3  4,4
-"""
-rows= 2
-cols= 3
+rows= 5
+cols= 5
 nodes=[[None for i in range(cols)] for j in range(rows)]
 #Make nodes and connect them
 for row in range(rows):
@@ -150,12 +146,29 @@ if(rows >=3 and cols >= 3):
                     if((rowMove != 0 or colMove != 0) and (not nodes[row][col].isNeighbor(nodeToAdd))):
                         nodes[row][col].add(nodeToAdd)
 
-#Manually remove any wanted nodes here w/ <node>.remove()
+"""
+0,0  0,1  0,2  0,3  0,4
 
-#
-for list in nodes:
-    for node in list:
-        print(node.name)
-        print("Number of edges: " + str(len(node.edges)) + "\n")
-startNode= None
-endNode= None
+1,0  1,1  1,2  1,3  1,4
+
+2,0  2,1  2,2  2,3  2,4
+
+3,0  3,1  3,2  3,3  3,4
+
+4,0  4,1  4,2  4,3  4,4
+"""
+#Manually remove any wanted nodes here w/ <node>.remove()
+nodes[1][0].remove()
+nodes[1][1].remove()
+nodes[2][1].remove()
+nodes[3][1].remove()
+#[0,0], [0,1], [1,2], [2,2], [3,2], [4,1], [4,0]
+
+
+#for list in nodes:
+#    for node in list:
+#        print(node.name)
+#        print("Number of edges: " + str(len(node.edges)) + "\n")
+startNode= nodes[0][0]
+endNode= nodes[4][0]
+print("[0,0], [0,1], [1,2], [2,2], [3,2], [4,1], [4,0]")

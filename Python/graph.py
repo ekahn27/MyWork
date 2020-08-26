@@ -32,8 +32,12 @@ class Node:
         assert isinstance(self, Node)
 
         for edge in self.edges:
-            neighbor= getNeighbor(edge)
+            neighbor= self.getNeighbor(edge)
             neighbor.edges.remove(edge)
+
+            edge.node1= None
+            edge.node2= None
+
         self.edges=[]
         return
 
