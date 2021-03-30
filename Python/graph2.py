@@ -29,7 +29,7 @@ class Node:
     
     def remove(self):
         """
-        Remove a node from the graph
+        Remove this node from the graph
         """
         assert isinstance(self, Node)
 

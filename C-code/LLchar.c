@@ -5,7 +5,7 @@
 
 typedef struct Node{
     struct Node *next;
-    float val;//change for val type
+    char val;//change for val type
     struct Node *prev;
 
 }node_t;
@@ -71,7 +71,6 @@ Remove node <nodeRemove> from linked list <list>. The node is then freed.
 	//if removing first node, pointer to LL must be shifted to next node
 	if(nodeRemove == *list){
 		*list= (*list)->next;
-		//if()//fix
 		(*list)->prev= NULL;
 		free(nodeRemove);
 		return;
@@ -83,18 +82,6 @@ Remove node <nodeRemove> from linked list <list>. The node is then freed.
 	free(nodeRemove);
 }
 
-void removeNode2(node_t** nodeRemove){
-/*
-v2, hopefully simpler
-*/
-	if((*nodeRemove)->prev == NULL){//removing first node
-		node_t* nodeRemPtr= *nodeRemove;
-		*nodeRemove= (*nodeRemove)->next;//moving pointer to list
-		(*nodeRemove)->prev= NULL;
-		free(nodeRemPtr)
-	}
-}
-
 void freeList(node_t *list){
 /*
 Given a pointer to a linked list, free all nodes in the list
@@ -102,7 +89,7 @@ Given a pointer to a linked list, free all nodes in the list
 	node_t *temp;
 	for(temp= list; temp != NULL; list= temp){
 		temp= list->next;
-		printf("freeing: %f\n", list->val);//change for val type
+		printf("freeing: %c\n", list->val);//change for val type
 		free(list);
 	}
 }
@@ -114,15 +101,14 @@ Print all the values of nodes in a given linked list for testing purposes.
 	node_t *temp;
 	int index= 0;
 	for(temp= list; temp != NULL; temp= temp->next){
-		printf("Node %d: %f\n", index, temp->val);//change for val type
+		printf("Node %d: %c\n", index, temp->val);//change for val type
 		index++;
 	}
 }
 
 int main(){
 	//1
-    //node_t *LL= malloc(sizeof(node_t));
-	node_t *LL= initNode();
+    node_t *LL= malloc(sizeof(node_t));
     LL->val= 1.0;
 
 	//1->2
